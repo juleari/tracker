@@ -1,0 +1,140 @@
+doctype html5
+html
+    head
+        include head
+        link(type='text/css', href='css/comms.css', rel='stylesheet')
+    body
+        div.h
+            include header
+        div.b
+
+            div.popup.none
+                div#attach_block.b-note.attach-note.none
+                    div.b-note__title= lang.fields.attach.add
+                        div.e-close
+                    div.b-note__body
+                        div.b-form__file
+                            div.b-form__input
+                                p= lang.fields.attach.choose
+                                input#file0.attach(type='file', name='file0', multiple='multiple')
+                                img.image
+                                input#count(type='text', name='count', value='0').none
+
+                        div.b-button#attach_files= lang.fields.attach.add
+
+                div.alert.none
+                    div.402.none= error.closed
+                    div.403.none= error.access
+                    div.500.none= error.server
+
+                div.overlay
+
+            div.b-task
+                div.b-task__left
+                    - each d in desc
+                        - if (d.edit != 'none')
+                            - var className = 'edit b-task__' + d.title
+                        - else 
+                            - var className = 'b-task__' + d.title
+
+                        div(class= className)
+                            div(id= d.title, type= d.type)= task[d.title]
+                                img(src="/img/edit.png").e-edit.e-img.opacity
+                    - var id = task._id.toString()
+                    div#id.id.none= id
+                    
+                    include comments 
+                div.b-task__right
+                    div.table
+                        div
+                            div= header.people
+                        - each p in people
+                            div
+                                div= lang.fields[p.title].title
+                                - if (p.edit != 'none')
+                                    - var className = 'edit show_ul'
+                                - else 
+                                    - var className = ''
+                                    
+                                div(class= className)
+                                    - var fieldName = p.title
+                                    - var id = fieldName
+                                    - each c in p.collection
+                                        - if (colls[c.name][task[fieldName]])
+                                            - var name = ''
+                                            - each field in c.fields.title
+                                                - name += colls[c.name][task[fieldName]][field] + ' '
+                                            div(id= id)= name
+                                                - if (p.edit != 'none')
+                                                    img(src="/img/people-edit.png").e-edit.e-edit_people.e-img.opacity
+                                                div.id.none= colls[c.name][task[fieldName]]._id.toString()
+                                                - if (c.name == 'Users')
+                                                    div.email.none= colls[c.name][task[fieldName]].email
+                                            
+                                            - if (p.edit != 'none')
+                                                - var className = 'b-task__edit b-task__edit_' + p.title
+                                                ul(class= className)
+                                                    - each c in p.collection
+                                                        - each u in colls[c.name]
+                                                            - var name = ''
+                                                            - each field in c.fields.title
+                                                                - name += u[field] + ' '
+                                                            li= name
+                                                                div.id.none= u._id.toString()
+                                                                - if (c.name == 'Users')
+                                                                    div.email.none= u.email
+
+                    div.table
+                        div
+                            div= lang.about
+                        - each st in stat
+                            div
+                                div= lang.fields[st.title].title
+
+                                - if (st.edit != 'none')
+                                    - var className = 'edit show_ul'
+                                - else 
+                                    - var className = ''
+                                    
+                                div(class= className)
+                                    div(id= st.title)= lang.fields[st.title].options[ task[st.title] ]
+                                        div.value.none= task[st.title]
+                                        img(src="/img/edit.png").e-edit.e-img.opacity
+                                    
+                                    - if (st.edit != 'none')
+                                        - var className = 'b-task__edit b-task__edit_' + st.title
+                                        ul(class= className)
+                                            - each s in st.options
+                                                li 
+                                                    div.text= lang.fields[st.title].options[ s ]
+                                                    div.value.none= s
+                    div.table
+                        div
+                            div= dates.title
+
+                        - each d in ['open', 'change', 'close']
+                            - if (task['date_' + d])
+                                div
+                                    div= dates[d]
+                                    - var date = new Date(task['date_' + d])
+                                    - var text_date = dates.days[date.getDay()] + ', ' +  date.getDate() + ' ' + dates.months[date.getMonth()] + ' ' + date.getFullYear()
+                                    div= text_date
+
+                    div.table
+                        div
+                            div= lang.fields.attach.title
+                        - if (task.files)
+                            - each f in colls.Files
+                                - if (/image/.test(f.type))
+                                    img.picture(src= f.data.replace(/ /mgi, ''))
+                                - var id = '/files_' +  f._id.toString()
+                                a(href= id)
+                                    div= f.name
+                        div.edit
+                            div#attach + 
+                                = lang.fields.attach.add
+
+        script(type='text/javascript', src='js/jquery.min.js')
+        script(type='text/javascript', src='js/core.js')
+        script(type='text/javascript', src='js/index.js')
+        script(type='text/javascript', src='js/task.js')

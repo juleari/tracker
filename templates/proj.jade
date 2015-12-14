@@ -1,0 +1,42 @@
+doctype html5
+html
+    head
+        include head
+    
+    body
+        include header
+        div.b
+            div.proj
+                - if (sett && sett.fields)
+                    div.description
+                        - each field in sett.fields
+                            - if (field.on)
+                                div
+                                    - var id = field.title
+                                    - if (id != "title" && id != "unique_title")
+                                        
+                                        label.field_label(for= id)= lang_p[id].title + ':'
+                                        
+                                        - if (field.type == "text" || field.type == "long_text")
+                                            div.field_text(id= id)= proj[id]
+                                        
+                                        - if (field.options_type == "text")
+                                            div.field_text(id= id)= lang_p[id].options[proj[id]]
+
+                                        - if (field.options_type == "colls")
+                                            - each coll in field.collections
+                                                - if ( colls[coll.name][proj[id]] )
+                                                    - var value = ""
+                                                    - each t in coll.fields.title
+                                                        - value += colls[coll.name][proj[id]][t] + ' '
+                                                    div.field_collect(id= id)= value
+                                                        div.id.none= colls[coll.name][proj[id]][coll.fields.none[0]]
+
+                div.b-note
+                    div.b-note__title= f.name
+                    div.b-note__body
+                        include tasks
+                    
+
+        script(type='text/javascript', src='js/jquery.min.js')
+        script(type='text/javascript', src='js/index.js')

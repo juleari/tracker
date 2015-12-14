@@ -1,0 +1,159 @@
+doctype html5
+html
+    head
+        include head
+        link(type='text/css', href='css/comms.css', rel='stylesheet')
+    
+    body
+        div.h
+            include header
+        
+        div.b
+            div.search__sett
+
+                input.search__sett__query(placeholder= lang.title, value= text)
+                - if (query.Comments)
+                    div#query_comments.none= query.Comments
+                - if (query.Tasks)
+                    div#query_tasks.none= query.Tasks
+
+                div.b-note.js-choose
+
+                    div.b-note__title= lang.choose
+                    div.b-note__body
+
+                        label(for="search__sett__options_comments")= lang.options.Comments
+                        - if (result.Comments)
+                            div.e-control.e-control_on.e-control_click.comments
+                                div.e-stick
+                                input(id= "search__sett__options_comments", type="checkbox", checked)
+                        - else
+                            div.e-control.e-control_click.comments
+                                div.e-stick 
+                                input(id= "search__sett__options_comments", type="checkbox")
+                        
+                        label(for="search__sett__options_tasks")= lang.options.Tasks
+                        - if (search.indexOf('Tasks') != -1)
+                            div.e-control.e-control_on.e-control_click.Tasks
+                                div.e-stick
+                                input(id= "search__sett__options_tasks", type="checkbox", checked)
+                        - else
+                            div.e-control.e-control_click.Tasks
+                                div.e-stick 
+                                input(id= "search__sett__options_tasks", type="checkbox")
+
+                div.b-note.js-projs
+
+                    div.b-note__title= projs.many
+                    div.b-note__body
+
+                        label(for="search__sett__projs_all")= projs.all
+                        div.e-control.e-control_on.e-control_click
+                            div.e-stick
+                            input(id= "search__sett__projs_all", type="checkbox", checked)
+                            div.all.none
+                        
+                        - each proj in colls.Projects
+                            - var id = "search__sett__proj_" + proj._id.toString()
+                            label(for= id)= proj.title
+                            div.e-control.e-control_on.e-control_click
+                                div.e-stick
+                                input(id= id, type="checkbox", checked)
+                                div.id.none= proj._id.toString()
+
+            table.search__results
+                tr
+                    th.b-task_column-name.b-task_status.border_left= tasks.status.title
+                    th.b-task_column-name.b-task_title= tasks.title.title
+                    th.b-task_column-name.b-task_desc= tasks.desc.title
+                    th.b-task_column-name.b-task_to.border_right= tasks.to.title
+                tr
+                    - var className = "disabled"
+                    - if (result.Comments || result.Tasks)
+                        - className += " none"
+                    td(class= className, rowspan="4")= lang.none
+
+                - if (result.Comments)
+                    - each task_comm, index in result.Comments
+                        - var task = colls.Tasks[index]
+                        - var link = "/task_" + task.beauty_name
+                        tr
+                            td.none.id.task= task._id.toString()
+                            td.none.id.proj= task.proj
+
+                            td.b-task_status.border_left
+                                a(href= link)= tasks.status.options[task.status]
+                                div.none= task.status
+
+                            td.b-task_title
+                                a(href= link)= task.title
+                            td.b-task_desc
+                                a(href= link)= task.desc
+
+                            - if (colls.Users[task.to])
+                                td.b-task_to.border_right
+                                    a(href= link)= colls.Users[task.to].name + ' ' + colls.Users[task.to].surname
+                                    div.id.none= task.to
+                            - else
+                                td.b-task_to.border_right
+                                    a(href= link)= colls.Departments[task.to].title
+                                    div.id.none= task.to
+
+                        tr.comments
+                            td.none.id.proj= task.proj
+                            td(colspan="4").colspan
+                                table.comms
+                                    tr
+                                        th.b-comm_column-name.b-comm_text= comms.text
+                                        th.b-comm_column-name.b-comm_from= comms.from
+                                        th.b-comm_column-name.b-comm_date= comms.date
+
+                                    - each comm in task_comm
+                                        tr
+                                            td.b-comm_text
+                                                a(href= link)= comm.text
+                                            
+                                            td.b-comm_from
+                                                a(href= link)= colls.Users[comm.from].name + ' ' + colls.Users[comm.from].surname
+                                                div.id.none= comm.from
+
+                                            - if (comm.date_change)
+                                                - var date = new Date(comm.date_change)
+                                            - else 
+                                                - var date = new Date(comm.date_add)
+                                            - var text_date = dates.days[date.getDay()] + ', ' +  date.getDate() + ' ' + dates.months[date.getMonth()] + ' ' + date.getFullYear()
+
+                                            td.b-comm_date
+                                                a(href= link)= text_date
+
+                - if (result.Comments)
+                    - each task in result.Tasks
+                        - var link = "/task_" + task.beauty_name, className= 'tasks'
+                        - if (search.indexOf('Tasks') == -1)
+                            - className += ' none'
+                        tr(class= className)
+                            td.none.id.task= task._id.toString()
+                            td.none.id.proj= task.proj
+
+                            td.b-task_status.border_left
+                                a(href= link)= tasks.status.options[task.status]
+                                div.none= task.status
+
+                            td.b-task_title
+                                a(href= link)= task.title
+                            td.b-task_desc
+                                a(href= link)= task.desc
+
+                            - if (colls.Users[task.to])
+                                td.b-task_to.border_right
+                                    a(href= link)= colls.Users[task.to].name + ' ' + colls.Users[task.to].surname
+                                    div.id.none= task.to
+                            - else
+                                td.b-task_to.border_right
+                                    a(href= link)= colls.Departments[task.to].title
+                                    div.id.none= task.to
+
+        script(type='text/javascript', src='js/jquery.min.js')
+        script(type='text/javascript', src='js/core.js')
+        script(type='text/javascript', src='js/index.js')
+        script(type='text/javascript', src='js/search.js')

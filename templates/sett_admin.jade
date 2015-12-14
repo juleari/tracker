@@ -1,0 +1,289 @@
+doctype html5
+html
+    head
+        include head
+        link(type='text/css', href='css/sett.css', rel='stylesheet')
+
+    body
+        div.h
+            include header
+        div.b
+            div.settings#sett_admin
+                h= lang.sett.look
+                div.b-note__body.sett__body
+                    div.b-note.sett__task__block
+                        label.sett__label.sett__label_main= lang.language.title
+
+                        div.sett__task__change
+                            h= lang.language.choose + ':'
+                            div
+                                - var i = 0, k = ''
+                                - each l in colls.Languages
+                                    - k = 'lang_' + i
+                                    - if (sett.lang.options[l.lang_code] && sett.lang.options[l.lang_code].on.toString() == 'true')
+                                        div.sett__task__choose
+                                            div.e-control.e-control_on.e-control_click
+                                                div.e-stick
+                                                input(id= k, type="checkbox", name= l.lang_code, checked)
+                                            label(for= k).b-prop__name= l.lang_name
+                                    - else
+                                        div.sett__task__choose
+                                            div.e-control.e-control_click
+                                                div.e-stick
+                                                input(id= k, type="checkbox", name= l)
+                                            label(for= k).b-prop__name= l.lang_name
+                                    - i++
+                      
+                        div.sett__task__change
+                            h= lang.language.default + ':' 
+                            select#language_default.sett__input
+                                - each l in sett.lang.options
+                                    - if (l == sett.lang.default)
+                                        option(value= l, selected).sett__option= l.lang_name
+                                    - else 
+                                        option(value= l.lang_code).sett__option= l.lang_name
+
+                    div.b-note.sett__task__block
+                        label.sett__label.sett__label_main= lang.search.title
+
+                        div.sett__task__change
+                            h= lang.search.choose + ':'
+                            div
+                                - var i = 0, k = ''
+                                - each o, o_name in lang.search.options
+                                    - k = 'search_' + i
+                                    - if (sett.search.indexOf(o_name) != -1)
+                                        div.sett__task__choose
+                                            div.e-control.e-control_on.e-control_click
+                                                div.e-stick
+                                                input(id= k, type="checkbox", checked)
+                                            label(for= k).b-prop__name= o
+                                    - else
+                                        div.sett__task__choose
+                                            div.e-control.e-control_click
+                                                div.e-stick
+                                                input(id= k, type="checkbox")
+                                            label(for= k).b-prop__name= o
+                                    - i++
+
+                h= lang.sett.permis
+                div.b-note.sett__block.settings__blocks#task
+                    div.b-note__title= lang.task.many
+                    div.b-note__body.sett__body
+
+                        - each field in sett.task.fields
+                            - if (field.edit != 'none')
+                                - var className = 'b-note sett__task__block'
+                                - if (field.on.toString() != "true")
+                                    - className += ' sett__task__block_disabled'
+
+                                div(class= className, id= field.title)
+                                    label.sett__label.sett__label_main= lang.task.fields[field.title].title
+                                        - var className = 'e-control'
+                                        - if (field.on.toString() == "true")
+                                            - className += ' e-control_on'
+                                        - if (field.click.toString() == "true")
+                                            - className += ' e-control_click'
+                                        div(class= className)
+                                            div.e-stick
+                                    - if (field.type == 'option')
+
+                                        - if (field.options_type == 'text')
+                                            div.sett__task__change
+                                                h= lang.task.fields[field.title].choose + ':'
+
+                                                div
+                                                    - each o, o_name in lang.task.fields[field.title].options
+                                                        
+                                                        - var k = 'task__choose__' + field.title + '__' + o_name
+                                                        - var className = 'e-control'
+                                                        - if (field.options.indexOf(o_name) != -1)
+                                                            - className += ' e-control_on'
+                                                            - if (!def_sett.task.fields[field.title] || def_sett.task.fields[field.title].options.indexOf(o_name) == -1)
+                                                                - className += ' e-control_click'
+                                                        - else
+                                                            - className += ' e-control_click'
+                                                        div.sett__task__choose
+                                                            div(class= className)
+                                                                div.e-stick
+                                                                - if (field.options.indexOf(o_name) != -1)
+                                                                    input(id= k, type="checkbox", checked)
+                                                                - else
+                                                                    input(id= k, type="checkbox")
+                                                            label(for= k).b-prop__name= o
+
+                                            div.sett__task__change
+                                                h= lang.task.fields[field.title].add + ':'
+                                                input#task__status_name(type="text", placeholder= lang.form.title).sett__input
+
+                                            div.sett__task__change.js-default
+                                                - var k = 'task__choose__' + field.title + '_default'
+                                                h= lang.task.fields[field.title].default + ':'
+                                                select(id= k).sett__input
+                                                    - each o in field.options
+                                                        - if (sett.task.fields[field.title].default == o)
+                                                            option(value= o, selected).sett__option= lang.task.fields[field.title].options[o]
+                                                        - else
+                                                            option(value= o).sett__option= lang.task.fields[field.title].options[o]
+
+                                        - if (field.options_type == 'colls')
+                                            - if (field.title == 'to')
+                                                - var k = 'task__choose__' + field.title + '_default'
+                                                - var className = 'e-control e-control_on e-control_click e-control_vertical e-control_vertical_to e-control_'
+                                                div.sett__task__change
+                                                    h= lang.task.fields[field.title].default
+                                                    
+                                                    - if (field.default_type == 'from')
+                                                        - className += '0'
+                                                    - else
+                                                        - className += '1'
+                                                    div.js-default
+                                                        div(class= className)
+                                                            div.e-stick
+                                                        - if (field.default_type == 'from')
+                                                            input#task__to_from(type="radio", name="task__to", value="from", number="0", checked="")
+                                                            label(for="task__to_from").sett__label= lang.task.fields.to.options['from']
+                                                            input#task__to_user(type="radio", name="task__to", value="user", number="1")
+                                                            label(for="task__to_user").sett__label= lang.task.fields.to.options['user']
+                                                            select#task__to_user.sett__input(disabled="")
+                                                                - each u, u_ind in colls.Users
+                                                                    option(value= u_ind, colls="Users").sett__option= u.name + ' ' + u.surname
+                                                                - each d, d_ind in colls.Departments
+                                                                    option(value= d_ind, colls="Departments").sett__option= d.title
+                                                        - else
+                                                            input#task__to_from(type="radio", name="task__to", value="from", number="0")
+                                                            label(for="task__to_from").sett__label= lang.task.fields.to.options['from']
+                                                            input#task__to_user(type="radio", name="task__to", value="user", number="1", checked="")
+                                                            label(for="task__to_user").sett__label= lang.task.fields.to.options['user']
+                                                            select#task__to_user.sett__input
+                                                                - each u, u_ind in colls.Users
+                                                                    - if (u_ind == field.default)
+                                                                        option(value= u_ind, selected, colls="Users").sett__option= u.name + ' ' + u.surname
+                                                                    - else
+                                                                        option(value= u_ind, colls="Users").sett__option= u.name + ' ' + u.surname
+                                                                - each d, d_ind in colls.Departments
+                                                                    - if (d_ind == field.default)
+                                                                        option(value= d_ind, selected, colls="Departments").sett__option= d.title
+                                                                    - else
+                                                                        option(value= d_ind, colls="Departments").sett__option= d.title
+
+                                            - else
+                                                - var id = 'task__choose__' + field.title + '_default'
+                                                div.sett__task__change.js-default
+                                                    h= lang.task.fields[field.title].default
+                                                    select(id= id).sett__input
+                                                        - each col in field.collection
+                                                            - each elem, elem_id in colls[col.name]
+                                                                - var title = ''
+                                                                - each t in col.fields.title
+                                                                    - title += elem[t] + ' '
+                                                                - if (sett.task.fields[field.title].default == elem_id)
+                                                                    option(value= elem_id, selected).sett__option= title
+                                                                - else
+                                                                    option(value= elem_id).sett__option= title
+
+                                    - if (field.type != 'file' && field.edit)
+                                        div#js-rights.sett__task__change.js-rights
+                                            h= lang.sett.rights.title
+                                            div
+                                                - var i = 0
+                                                - var ind_on = 0
+                                                - each o, o_name in lang.sett.rights.options
+                                                    - var k = 'task__rights__' + field.title + '__' + o_name
+                                                    - if (field.edit == o_name)
+                                                        input(id= k, value= o_name, name='task__rights__' + field.title, type="radio", number= i, checked)
+                                                        - ind_on = i
+                                                    - else
+                                                        input(id= k, value= o_name, name='task__rights__' + field.title, type="radio", number= i)
+                                                    
+                                                    label(for= k).sett__label= o
+                                                    - i++
+                                                - var className = 'e-control e-control_on e-control_click e-control_vertical e-control_' + ind_on
+                                                div(class= className)
+                                                    div.e-stick
+                                            div.b-button.none= lang.form.save
+
+                                    - if (field.type != 'file' && field.edit)
+                                        div.sett__task__note.sett__task__change.js-mess#js-mess
+                                            h= lang.sett.mess.title
+                                            div
+                                                - var i = 0
+                                                - var ind_on = 0
+                                                - each o, o_name in lang.sett.mess.options
+                                                    - var k = 'task__mess__' + field.title + '__' + o_name
+                                                    - if (field.mess.on == o_name)
+                                                        input(id= k, value= o_name, name='task__mess__' + field.title, type="radio", number= i, checked)
+                                                        - ind_on = i
+                                                    - else
+                                                        input(id= k, value= o_name, name='task__mess__' + field.title, type="radio", number= i)
+                                                    
+                                                    label(for= k).sett__label= o
+                                                    - i++
+                                                - var className = 'e-control e-control_on e-control_click e-control_vertical e-control_' + ind_on
+                                                div(class= className)
+                                                    div.e-stick
+                                            div.b-button.none= lang.form.save
+
+                div.b-note.sett__block.settings__blocks#proj
+                    div.b-note__title= lang.proj.many
+                    div.b-note__body.sett__body
+                        div.b-note.sett__task__block
+
+                            h= lang.sett.rights.add
+                            
+                            div.sett__task__change.js-rights_proj(id= "proj__add")
+                                h= lang.sett.rights.add_proj
+                                - var i = 0
+                                - var ind_on = 0
+                                div
+                                    - each a in ["admins", "all_users"]
+                                        - var k = 'proj__rights__add__' + a
+                                        - if (sett.proj.add == a)
+                                            input(id= k, value= a, type="radio", number= i, checked)
+                                            - ind_on = i
+                                        - else
+                                            input(id= k, value= a, type="radio", number= i)
+                                        
+                                        label(for= k).sett__label= lang.sett.rights.options[a]
+                                        - i++
+                                    - var className = 'e-control e-control_on e-control_click e-control_vertical e-control_vertical_to e-control_' + ind_on
+                                    div(class= className)
+                                        div.e-stick
+
+                            div.sett__task__change.js-rights_proj(id= "proj__add_task")
+                                h= lang.sett.rights.add_task
+                                - var i = 0
+                                - var ind_on = 0
+                                div
+                                    - each a in ["admins", "all_users"]
+                                        - var k = 'proj__rights__add__' + a
+                                        - if (sett.proj.add_task == a)
+                                            input(id= k, value= a, type="radio", number= i, checked)
+                                            - ind_on = i
+                                        - else
+                                            input(id= k, value= a, type="radio", number= i)
+                                        
+                                        label(for= k).sett__label= lang.sett.rights.options[a]
+                                        - i++
+                                    - var className = 'e-control e-control_on e-control_click e-control_vertical e-control_vertical_to e-control_' + ind_on
+                                    div(class= className)
+                                        div.e-stick
+
+                        - each field in sett.proj.fields
+                            - if (field.edit != 'none')
+                                div.b-note.sett__task__block(id= 'proj__' + field.title)
+                                    label.sett__label.sett__label_main= lang.proj.fields[field.title].title
+                                        - var className = 'e-control'
+                                        - if (field.on.toString() == "true")
+                                            - className += ' e-control_on'
+                                        - if (field.click.toString() == "true")
+                                            - className += ' e-control_click'
+                                        div(class= className)
+                                            div.e-stick
+
+                                    
+
+        script(type='text/javascript', src='js/jquery.min.js')
+        script(type='text/javascript', src='js/core.js')
+        script(type='text/javascript', src='js/index.js')
+        script(type='text/javascript', src='js/sett.js')

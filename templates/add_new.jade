@@ -1,0 +1,57 @@
+extends workflow
+block form
+    div.b-note__body
+        - each field in fields
+            - var id = field.title
+            label.b-form__label(for= id)= lang_fields[field.title].title + ':'
+            - if (field.type == "text")
+                input.b-form__input(id= id, type="text")
+            - if (field.type == "long_text")
+                textarea.b-form__input(id= id, type="text")
+            - if (field.type == "option")
+                select.b-form__input(id= id, name= field.title)
+                    - if (field.options_type == "text")
+                        option.b-form__option(value= field.default)= lang_fields[field.title].options[field.default]
+                        - each o in field.options
+                            - if (o != field.default)
+                                option.b-form__option(value= o)= lang_fields[field.title].options[o]
+                    - if (field.options_type == "colls")
+                        - if (field.default_type == "text")
+                            option.b-form__option(value= field.default)= lang_fields[field.title].options[field.default]
+                        - else
+                            - if (field.default_type == "from")
+                                option.b-form__option(value= user.id)= user.name
+                            - else
+                                - if (field.title == "to")
+                                    - if (field.default_type == 'Users')
+                                        option.b-form__option(value= field.default)= colls[field.default_type][field.default].name + ' ' + colls[field.default_type][field.default].surname
+                                    - else 
+                                        option.b-form__option(value= field.default)= colls[field.default_type][field.default].title
+                                - else 
+                                    - var value = ""
+                                    - each c in field.collection
+                                        - if (c.name == field.default_type)
+                                        - each t in c.fields.title
+                                            - value += colls[field.default_type][field.default][t] + ' '
+                                    option.b-form__option(value= field.default)= value
+                                    - if (field.none && field.none != field.default)
+                                        option.b-form__option(value= field.none)= lang_fields[field.title].options[field.none]
+                        - each col in field.collection
+                            - each elem in colls[col.name]
+                                - var id = elem[col.fields.none[0]].toString()
+                                - if (id != field.default && (id != user.id || field.title != "to"))
+                                    - var value = ""
+                                    - each t in col.fields.title
+                                        - value += elem[t] + ' '
+                                    - var id = elem[col.fields.none[0]].toString()
+                                    option.b-form__option(value= id)= value
+            - if (field.type == "file")
+                div.b-form__file
+                  div.b-form__input
+                    p= files.choose
+                    input#file0.attach(type='file', name='file0', multiple='multiple')
+                    img.image
+                  input#count(type='text', name='count', value='0').none
+        
+        div.b-button(id= button.id)= button.create
+

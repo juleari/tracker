@@ -1,0 +1,18 @@
+extends form
+block head_reg
+  div.header
+    ul.inline.right
+      li
+        a(href='/reg_f', title= auth.reg_firm)= auth.reg_firm
+
+block note_inner
+  input.b-note__input#auth_email(type='text', placeholder= form.login)
+  input.b-note__input#auth_password(type='password', placeholder= form.password)
+  input.b-note__checkbox#auth_remember(type='checkbox')
+  label.b-note__label(for='auth_remember')= form.remember
+  div.b-button#auth_send= form.in
+  a.b-note__forgot(href='#')= form.forgot
+
+block scripts
+  script(type='text/javascript', src='js/auth.js')
+    

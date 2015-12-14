@@ -1,0 +1,312 @@
+{
+  "auth": {
+    "title": "Log in",
+    "reg_firm": "Check in new organization",
+    "reg": "Check in"
+  },
+  "comm": {
+    "title": "Comments",
+    "add": "Add a comment",
+    "from": "Author",
+    "date": "Date add",
+    "none": "No comments",
+    "enter": "Enter the text of your comment",
+    "text": "Text"
+  },
+  "dates": {
+    "title": "Dates",
+    "open": "Created",
+    "change": "Updated",
+    "close": "Closed",
+    "today": "Today",
+    "days": [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "months": [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "Jule",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ],
+  },
+  "depart": {
+    "title": "Department",
+    "head": "Head",
+    "new": "New department",
+    "employers": "Employers",
+    "none": "All employers already in departments"
+  },
+  "error": {
+    "default": "Something going wrong...",
+    "access": "You have not access rights to do this",
+    "closed": "this task is closed",
+    "server": "Error. Please try later"
+  },
+  "files": {
+    "title": "Files",
+    "add": "Add files",
+    "attach": "Attach files",
+    "choose": "Choose file"
+  },
+  "filters": {
+    "title": "Filters",
+    "list": "Filter list",
+    "fields": "Choose fields to display",
+    "filter": "Field to filter",
+    "add": {
+      "title": "Add new filter",
+      "field": "Select the filter field",
+      "value": "Select the value of this field"
+    }
+  },
+  "form": {
+    "title": "Title",
+    "login": "Login (or email)",
+    "email": "Email",
+    "password": "Password",
+    "name": "Name",
+    "surname": "Surname",
+    "firmname": "Name of organization",
+    "remember": "Remember on this computer",
+    "forgot": "Remind the password",
+    "admin": "Give admins rights",
+    "from": "Reporter",
+    "to": "Assignee",
+    "desc": "Description",
+    "in": "Log in",
+    "save": "Save",
+    "reg": "Check in",
+    "create": "Create",
+    "unique_title": "Unique title",
+    "withoutproj": "without project"
+  },
+  "header" : {
+    "people" : "People",
+    "tasks" : "Tasks",
+    "projects" : "Projects",
+    "search" : "Search",
+    "add_task" : "Add task",
+    "add_filter" : "Add Filter",
+    "add_project" : "Add project",
+    "add_user" : "Add user",
+    "add_depart" : "Add department",
+    "home" : "Home page",
+    "sett_admin" : "Admin settings",
+    "settings" : "User settings",
+    "unauth" : "Log out"
+  },
+  "lang_code": "en",
+  "lang_name": "english",
+  "language" : {
+    "title" : "Language",
+    "choose" : "Choose the possible languages",
+    "default": "Default language"
+  },
+  "nodemailer": {
+    "task": {
+      "comm": {
+        "subject": "Add comment",
+        "in_task": "Task",
+        "add": "was commented"
+      },
+      "file": {
+        "subject": "Add file",
+        "new": "New file was added",
+        "from": "from user"
+      },
+      "new": {
+        "subject": "New task",
+        "text": {
+          "new_task": "You have one new task",
+          "title": "Title",
+          "desc": "Description",
+          "from": "From"
+        }
+      },
+      "edit": {
+        "subject": "Task edit",
+        "edit_task": "Task was changed",
+        "field": "Changed fields"
+      },
+      "see_link": "Link to task"
+    },
+    "registr": {
+      "firm": {
+        "subject": "Registration",
+        "reg_firm": "You registred new firm",
+        "in_sys": "in the case.tracker system",
+        "login": "Login",
+        "pass": "Password"
+      },
+      "user": {
+        "subject": "Registration",
+        "you_reg": "You registred in case.tracker",
+        "login": "Login",
+        "pass": "Password"
+      }
+    },
+    "sett": {
+      "pass": {
+        "subject": "Change password",
+        "edit": "Your password was successfully changed",
+        "new": "New password",
+        "edit_link": "You can change your password on the settings page"
+      }
+    }
+  },
+  "people": {
+    "title": "People",
+    "admin": "Administrator"
+  },
+  "proj": {
+    "title": "Project",
+    "all": "All projects",
+    "default": "default project",
+    "new": "New project",
+    "none": "No projects",
+    "many": "Projects",
+    "fields": {
+      "title": {
+        "title": "Title"
+      },
+      "desc": {
+        "title": "Description",
+      },
+      "unique_title": "Unique title"
+    }
+  },
+  "search": {
+    "title" : "Search",
+    "choose" : "Search in",
+    "options": {
+      "Comments": "Comments",
+      "Tasks": "Task's titles and descriptions"
+    },
+    "none": "No results"
+  },
+  "sett": {
+    "title": {
+      "admin": "Admin's settings",
+      "user": "User's settings"
+    },
+    "look": "Appearance",
+    "permis": "Setting permissions and displayed fields",
+    "rights": {
+      "add": "Rights to add",
+      "add_proj": "Rights to add projects",
+      "add_task": "Rights to add tasks",
+      "title": "Rights to edit",
+      "options": {
+        "admins": "admins",
+        "all users": "all_users",
+        "all_proj": "all project participants",
+        "from": "only reporter",
+        "to": "only assignee",
+        "from_to": "reporter and assignee"
+      }
+    },
+    "mess": {
+      "title": "Send messeges if changed",
+      "options": {
+          "listeners": "to all listeners",
+          "from": "only to reporter",
+          "to": "only to assignee",
+          "from_to": "to reporter and assignee"
+      },
+      "admin": "to all admins"
+    },
+    "pass": {
+      "title": "Change password",
+      "old": "Current password",
+      "new": "New password",
+      "repeat": "Repeat new password"
+    }
+  },
+  "task": {
+    "title": "Task",
+    "about": "About task", 
+    "many": "Tasks",
+    "new": "New task",
+    "none": "No tasks",
+    "fields": {
+      "attach": {
+        "title": "Files",
+        "add": "Add files",
+        "attach": "Attach files",
+        "choose": "Choose file"
+      },
+      "title": {
+        "title": "Title"
+      },
+      "desc": {
+        "title": "Description"
+      },
+      "proj": {
+        "title": "Project",
+        "default": "Default project",
+        "options": {
+          "withoutproj": "without project"
+        }
+      },
+      "prior": {
+        "title": "Priority",
+        "add": "Add priority",
+        "choose": "Choose priorities:",
+        "default": "Default priority",
+        "options": {
+          "minor": "Minor",
+          "normal": "Normal",
+          "high": "High",
+          "critical": "Critical"
+        }    
+      },
+      "status": {
+        "title": "Status",
+        "add": "Add status",
+        "choose": "Choose statuses",
+        "default": "Default status",
+        "options": {
+          "opened": "open",
+          "closed": "close",
+          "testing": "test"
+        }
+      },
+      "from": {
+        "title": "Reporter"
+      },
+      "to": {
+        "title": "Assignee",
+        "default": "Default assignee",
+        "options": {
+          "from": "reporter",
+          "user": "particular user"
+        }
+      },
+      "type": {
+        "title": "Type",
+        "add": "Add type",
+        "choose": "Choose types",
+        "default": "Default type",
+        "options": {
+          "task": "Task",
+          "test": "Testing",
+          "bag": "Bag"
+        }
+      }
+    }
+  }
+}

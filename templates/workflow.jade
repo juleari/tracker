@@ -1,0 +1,24 @@
+doctype html5
+html
+    head
+        include head
+
+    body
+        div.h
+            include header
+        
+        div.b
+            div.form
+                div.b-note
+                    div.b-note__title= title
+                        div.b-note__settings
+                    block form
+
+        script(type='text/javascript', src='js/jquery.min.js')
+        script(type='text/javascript', src='js/jquery.form.js')
+        script(type='text/javascript', src='js/ajaxfileupload.js')
+        script(type='text/javascript', src='js/core.js')
+        script(type='text/javascript', src='js/index.js')
+        script(type='text/javascript', src='js/work.js')
+
+        block scripts

@@ -1,0 +1,50 @@
+doctype html5
+html
+  head
+    include head
+    
+  body
+    div.h
+      include header
+    div.b-add
+      div.b-add__item
+        a(href="/add_depart")= '+ ' + header.add_depart
+      div.b-add__item
+        a(href="/reg_u")= '+ ' + header.add_user
+    div.b-people(url="/people_admin")
+      div.table
+        div
+          div.b-user__name.b-task_column-name= form.name
+          div.b-user__admin.b-task_column-name= people.admin
+        - each p in users
+          div
+            div.b-user__name= p.name
+            div.b-user__id.none= p.id
+            - if (user.admin == 'true')
+              - if (p.admin == 'true')
+                div.b-user__admin
+                  div.e-control.e-control_on.e-control_click
+                    div.e-stick
+              - else
+                div.b-user__admin
+                  div.e-control.e-control_click
+                    div.e-stick
+            - else
+              - if (p.admin == 'true')
+                div.b-user__admin
+                  div.e-control.e-control_on
+                    div.e-stick
+              - else
+                div.b-user__admin
+                  div.e-control
+                    div.e-stick
+
+      div.b-button.none#save= form.save
+      div.e-ok.e-img.none
+      div.e-err.e-img.none
+
+
+    script(type='text/javascript', src='js/jquery.min.js')
+    script(type='text/javascript', src='js/index.js')
+    script(type='text/javascript', src='js/core.js')
+    script(type='text/javascript', src='js/controls.js')

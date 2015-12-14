@@ -1,0 +1,101 @@
+doctype html5
+html
+    head
+        include head
+        link(type='text/css', href='css/sett.css', rel='stylesheet')
+
+    body
+        div.h
+            include header
+        div.b
+            - each lang in langs
+                - var className = 'settings'
+                - if (lang.lang_code != sett.lang.default)
+                    - className += ' none'
+
+                div(class= className, lang_code= lang.lang_code)
+                    div.b-note__body.sett__body
+                        div.b-note.sett__task__block
+                            label.sett__label.sett__label_main= lang.sett.pass.title
+
+                            div.sett__task__change#user__pass
+                                - var id = lang.lang_code + '__old_pass'
+                                label(for= id).sett__label.sett__label_input= lang.sett.pass.old
+                                input(id= id, class="js-old_pass", type="password").sett__input
+
+                                - var id = lang.lang_code + '__new_pass'
+                                label(for= id).sett__label.sett__label_input= lang.sett.pass.new
+                                input(id= id, class="js-new_pass", type="password").sett__input
+
+                                - var id = lang.lang_code + '__repeat'
+                                label(for= id).sett__label.sett__label_input= lang.sett.pass.repeat
+                                input(id= id, class="js-repeat", type="password").sett__input
+
+                                div.b-button.none= lang.form.save
+
+                        div.b-note.sett__task__block
+                            label.sett__label.sett__label_main= lang.language.title
+
+                            div.sett__task__change
+                                h= lang.language.default + ':' 
+                                select.js-language_default.sett__input
+                                    - each l in langs
+                                        - if (l.lang_code == sett.lang.default)
+                                            option(value= l.lang_code, selected).sett__option= l.lang_name
+                                        - else 
+                                            option(value= l.lang_code).sett__option= l.lang_name
+
+                        div.b-note.sett__task__block
+                            label.sett__label.sett__label_main= lang.search.title
+
+                            div.sett__task__change#user__search
+                                h= lang.search.choose + ':'
+                                div
+                                    - var k = ''
+                                    - each o, o_name in lang.search.options
+                                        - k = lang.lang_code + '__search_' + o_name
+                                        - if (sett.search.indexOf(o_name) != -1)
+                                            div.sett__task__choose
+                                                div.e-control.e-control_on.e-control_click
+                                                    div.e-stick
+                                                    input(id= k, search_option= o_name, type="checkbox", checked)
+                                                label(for= k).b-prop__name= o
+                                        - else
+                                            div.sett__task__choose
+                                                div.e-control.e-control_click
+                                                    div.e-stick
+                                                    input(id= k, search_option= o_name, type="checkbox")
+                                                label(for= k).b-prop__name= o
+
+                                div.b-button.none= lang.form.save
+
+                        div.b-note.sett__task__block
+                            label.sett__label.sett__label_main= lang.search.title
+
+                            div.sett__task__change#user__mess
+                                h= lang.sett.mess.title + ':'
+                                div
+                                    - var k = ''
+                                    - each f, f_name in fields
+                                        - if (f.edit && f.edit != 'none')
+                                            - k = lang.lang_code + '__field_' + f_name
+                                            - if (sett.task.fields.indexOf(f_name) != -1)
+                                                div.sett__task__choose
+                                                    div.e-control.e-control_on.e-control_click
+                                                        div.e-stick
+                                                        input(id= k, field_name= f_name, type="checkbox", checked)
+                                                    label(for= k).b-prop__name= lang.task.fields[f_name].title
+                                            - else
+                                                div.sett__task__choose
+                                                    div.e-control.e-control_click
+                                                        div.e-stick
+                                                        input(id= k, field_name= f_name, type="checkbox")
+                                                    label(for= k).b-prop__name= lang.task.fields[f_name].title
+
+                                div.b-button.none= lang.form.save
+
+        script(type='text/javascript', src='js/jquery.min.js')
+        script(type='text/javascript', src='js/core.js')
+        script(type='text/javascript', src='js/index.js')
+        script(type='text/javascript', src='js/sett.js')
+

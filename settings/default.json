@@ -1,0 +1,290 @@
+{
+    "_id" : ObjectId("53b1264830ba852f3931cffe"),
+    "filters" : [
+        "53b0bab530ba852f3931cffb"
+    ],
+    "lang" : {
+        "options" : {
+            "ru" : {
+                "lang_code" : "ru",
+                "lang_name" : "русский",
+                "on" : "true"
+            },
+            "en" : {
+                "lang_code" : "en",
+                "lang_name" : "english",
+                "on" : "false"
+            }
+        },
+        "default" : "ru"
+    },
+    "proj" : {
+        "add" : "all_users",
+        "add_task" : "all_users",
+        "show" : {
+            "admin" : "true",
+            "on" : "all_users"
+        },
+        "fields" : {
+            "title" : {
+                "on" : "true",
+                "type" : "text",
+                "click" : "false",
+                "title" : "title",
+                "edit" : "admins"
+            },
+            "desc" : {
+                "on" : "true",
+                "click" : "false",
+                "edit" : "admins",
+                "title" : "desc",
+                "type" : "long_text"
+            },
+            "unique_title" : {
+                "on" : "true",
+                "title" : "unique_title",
+                "type" : "text",
+                "click" : "true",
+                "edit" : "admins"
+            }
+        }
+    },
+    "search" : [
+        "Comments"
+    ],
+    "task" : {
+        "show" : {
+            "on" : "all_users",
+            "admin" : "true"
+        },
+        "fields" : {
+            "title" : {
+                "on" : "true",
+                "click" : "false",
+                "type" : "text",
+                "edit" : "all_users",
+                "title" : "title",
+                "mess" : {
+                    "on" : "listeners",
+                    "admin" : "false"
+                }
+            },
+            "desc" : {
+                "on" : "true",
+                "click" : "false",
+                "type" : "long_text",
+                "edit" : "all_users",
+                "title" : "desc",
+                "mess" : {
+                    "on" : "listeners",
+                    "admin" : "false"
+                }
+            },
+            "proj" : {
+                "click" : "false",
+                "collection" : [
+                    {
+                        "name" : "Projects",
+                        "fields" : {
+                            "none" : [
+                                "_id"
+                            ],
+                            "title" : [
+                                "title"
+                            ]
+                        }
+                    }
+                ],
+                "default" : "53fb160c5ef71245d85f4c92",
+                "default_type" : "Projects",
+                "title" : "proj",
+                "on" : "true",
+                "type" : "option",
+                "options_type" : "colls"
+            },
+            "prior" : {
+                "click" : "true",
+                "default" : "normal",
+                "edit" : "all_users",
+                "title" : "prior",
+                "mess" : {
+                    "on" : "listeners",
+                    "admin" : "false"
+                },
+                "on" : "true",
+                "options" : [
+                    "minor",
+                    "normal",
+                    "high",
+                    "critical"
+                ],
+                "options_type" : "text",
+                "type" : "option"
+            },
+            "to" : {
+                "click" : "false",
+                "collection" : [
+                    {
+                        "name" : "Users",
+                        "fields" : {
+                            "none" : [
+                                "_id"
+                            ],
+                            "title" : [
+                                "name",
+                                "surname"
+                            ]
+                        }
+                    },
+                    {
+                        "name" : "Departments",
+                        "fields" : {
+                            "none" : [
+                                "_id"
+                            ],
+                            "title" : [
+                                "title"
+                            ]
+                        }
+                    }
+                ],
+                "default_type" : "from",
+                "edit" : "all_users",
+                "mess" : {
+                    "on" : "listeners",
+                    "admin" : "false"
+                },
+                "on" : "true",
+                "options" : [
+                    "from",
+                    "user"
+                ],
+                "options_type" : "colls",
+                "title" : "to",
+                "type" : "option"
+            },
+            "from" : {
+                "on" : "true",
+                "click" : "false",
+                "collection" : [
+                    {
+                        "name" : "Users",
+                        "fields" : {
+                            "none" : [
+                                "_id"
+                            ],
+                            "title" : [
+                                "name",
+                                "surname"
+                            ]
+                        }
+                    },
+                    {
+                        "name" : "Departments",
+                        "fields" : {
+                            "none" : [
+                                "_id"
+                            ],
+                            "title" : [
+                                "title"
+                            ]
+                        }
+                    }
+                ],
+                "options_type" : "colls",
+                "edit" : "none",
+                "title" : "from",
+                "type" : "option"
+            },
+            "type" : {
+                "click" : "true",
+                "default" : "task",
+                "edit" : "all_users",
+                "title" : "type",
+                "mess" : {
+                    "on" : "listeners",
+                    "admin" : "false"
+                },
+                "on" : "true",
+                "options" : [
+                    "task",
+                    "test",
+                    "bag"
+                ],
+                "options_type" : "text",
+                "type" : "option"
+            },
+            "status" : {
+                "click" : "false",
+                "default" : "open",
+                "edit" : "all_users",
+                "mess" : {
+                    "on" : "listeners",
+                    "admin" : "false"
+                },
+                "on" : "true",
+                "options" : [
+                    "open",
+                    "close"
+                ],
+                "title" : "status",
+                "type" : "option",
+                "options_type" : "text"
+            },
+            "date_open" : {
+                "on" : "true",
+                "click" : "false",
+                "edit" : "none",
+                "title" : "attach",
+                "type" : "date",
+                "mess" : {
+                    "on" : "all_users",
+                    "admin" : "false"
+                }
+            },
+            "date_change" : {
+                "on" : "true",
+                "click" : "false",
+                "edit" : "none",
+                "title" : "attach",
+                "type" : "date",
+                "mess" : {
+                    "on" : "all_users",
+                    "admin" : "false"
+                }
+            },
+            "date_close" : {
+                "on" : "true",
+                "click" : "false",
+                "edit" : "none",
+                "title" : "attach",
+                "type" : "date",
+                "mess" : {
+                    "on" : "all_users",
+                    "admin" : "false"
+                }
+            },
+            "attach" : {
+                "on" : "true",
+                "click" : "true",
+                "add" : "all_users",
+                "title" : "attach",
+                "type" : "file",
+                "mess" : {
+                    "on" : "all_users",
+                    "admin" : "false"
+                }
+            }
+        },
+        "comm" : {
+            "on" : "true",
+            "click" : "true",
+            "add" : "all_users",
+            "mess" : {
+                "on" : "listeners",
+                "admin" : "false"
+            }
+        }
+    },
+    "type" : "default"
+}

@@ -1,0 +1,45 @@
+div.header
+  ul.inline.left
+    li
+      a(href='/people')= header.people
+    li
+      a(href='/tasks')= header.tasks
+    li
+      a(href='/projs')= header.projects
+
+  ul.inline.right
+    ul.ul_vertical
+      li
+        a(href='/unauth')= header.unauth
+      li 
+        a(href="/add_task") 
+          div.e-green +
+          = header.add_task
+      - if (user.admin == 'true')
+        li
+          a(href="/add_proj")
+            div.e-green +
+            = header.add_project
+        li
+          a(href="/reg_u")
+            div.e-green +
+            = header.add_user
+        li
+          a(href="/add_depart")
+            div.e-green +
+            = header.add_depart
+        li
+          a(href="/sett_admin")= header.sett_admin
+      li
+        a(href='/settings')= header.settings
+    li
+      input.search(placeholder= header.search)
+      img.e-search(src='/img/search.png')
+    li
+      a#user-name(href='/home', title= header.home)= user.name
+      div#user-id.id.none= user.id
+    li
+      div.e-down
+
+    
+      

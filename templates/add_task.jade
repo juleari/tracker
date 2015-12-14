@@ -1,0 +1,33 @@
+extends workflow
+block form
+  form.b-note__body(method="post", action="/add_t" enctype="multipart/form-data")
+    label.b-form__label(for='task_name')= form.title + ':'
+    input.b-form__input#task_name(type='text', name='name')
+    label.b-form__label(for='task_proj')= proj.title + ':'
+    select.b-form__input#task_proj(name='proj')
+      - each p in proj.options
+        option.b-form__option(value= p._id.toString())= p.name
+    label.b-form__label(for='task_to')= form.to + ':'
+    select.b-form__input#task_to(name='to')
+      - each u in users
+        option.b-form__option(value= u.id)= u.name
+    label.b-form__label(for='task_desc')= form.desc + ':'
+    textarea.b-form__input#task_desc(type='text', name='desc')
+    - if (type != 'false')
+      label.b-form__label(for='task_type')= type.title + ':'
+      select.b-form__select#task_type(name='type')
+        - each t in type.options
+          option.b-form__option(value= t.value)= t.name
+    - if (prior != 'false')
+      label.b-form__label(for='task_prior')= prior.title + ':'
+      select.b-form__select#task_prior(name='prior')
+        - each p in prior.options
+          option.b-form__option(value= p.value)= p.name
+    label.b-form__label(for='task_attach')= files.attach + ':'
+    div.b-form__file
+      div.b-form__input
+        p= files.choose
+        input#file0.task_attach(type='file', name='file0', multiple='multiple')
+        img.image
+      input#fileCount(type='text', name='fileCount', value='0').none
+    div.b-button#task_send= form.create

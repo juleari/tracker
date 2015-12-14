@@ -1,0 +1,22 @@
+doctype html5
+html
+  head
+    meta(charset='utf-8')
+    title= title
+    link(rel='shortcut icon', href='img/tracker.ico')
+    link(type='text/css', href='css/header.css', rel='stylesheet')
+    link(type='text/css', href='css/style.css', rel='stylesheet')
+    link(type='text/css', href='css/note.css', rel='stylesheet')
+
+  body
+    block head_reg
+    div.b-note.b-form
+      div.error.none= error.default
+      div.b-note__title= title
+      div.b-note__body
+        block note_inner
+
+    script(type='text/javascript', src='js/jquery.min.js')
+    script(type='text/javascript', src='js/core.js')
+    script(type='text/javascript', src='js/form.js')
+    block scripts

@@ -1,0 +1,22 @@
+doctype html5
+html
+  head
+    meta(charset='utf-8')
+    title= title
+    link(rel='shortcut icon', href='img/tracker.ico')
+    link(type='text/css', href='css/style.css', rel='stylesheet')
+    link(type='text/css', href='css/note.css', rel='stylesheet')
+
+  body
+    div.h
+
+    div.b-note.b-error
+      div.b-note__title= title
+      - if (mess instanceof Array)
+        div.b-note__body
+          - each m in mess
+            = m
+            br
+      - else
+        div.b-note__body= mess
+        

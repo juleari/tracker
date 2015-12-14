@@ -1,0 +1,123 @@
+.b-note {
+  border: 1px solid #bbb;
+  box-shadow: -1px 1px #eee;
+  width: 400px;
+  min-width: 300px;
+  display: inline-block;
+  margin: 130px auto;
+  vertical-align: top;
+  position: relative;
+  margin: 10px 0;
+  text-align: left;
+}
+
+.b-note.b-error {
+  display: block;
+  margin: 130px auto;
+}
+
+.b-note.b-form {
+  width: 300px;
+  margin: 100px auto;
+  display: block;
+}
+
+.b-note__title {
+  height: 30px;
+  background: #333;
+  color: #fff;
+  font-size: 15px;
+  line-height: 28px;
+  padding-left: 10px;
+}
+  .b-note__settings {
+    float: right;
+    margin-right: 10px;
+    margin-top: 7px;
+    cursor: pointer;
+    background-image: url(/img/sett.png);
+    width: 16px;
+    height: 16px;
+    background-size: contain;
+  }
+
+.b-note .b-note__body {
+  padding: 10px;
+  background: #fafafa;
+  color: #333;
+}
+
+.b-note__input {
+  width: 280px;
+  border: 1px solid #bbb;
+  background: #fff;
+  color: #333;
+  padding: 10px 5px;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+.b-note__checkbox {
+  border: none;
+  width: 15px;
+  margin: 0 5px 0 0;
+}
+.b-projs {
+  text-align: center; 
+  margin: 50px auto;
+  width: 90%;
+}
+  .b-projs.b-projs_add {
+    margin-top: 10px;
+  }
+
+  .b-projs_add .b-note__body {
+    line-height: 77px;
+    font-size: 110px;
+    vertical-align: top;
+    padding-top: 0px;
+    color: #666;
+  }
+.b-note__desc {
+  display: inline-block;
+  float: left;
+  width: 120px;
+}
+.b-proj .b-note__body>div {
+  line-height: 25px;
+}
+.b-note.b-proj {
+  width: 200px!important;
+  min-width: 200px;
+  margin: 10px;
+  display: inline-block;
+  text-align: center;
+}
+
+div.proj {
+    width:  90%;
+    margin: 30px auto;
+}
+div.description {
+    text-align: left;
+}
+label.field_label, div.field_text {
+    display: table-cell;
+    padding-bottom: 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+label.field_label {
+    min-width: 140px;
+}
+div.field_text {
+    padding-left: 10px;
+}
+.description>div {
+    display: table-row;
+}
+
+.form {
+    width: 410px;
+    margin: 50px auto;
+}

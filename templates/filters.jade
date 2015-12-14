@@ -1,0 +1,91 @@
+doctype html5
+html
+  head
+    include head
+    link(type='text/css', href='css/sett.css', rel='stylesheet')
+
+  body
+    include header
+    div.b
+      div.settings
+        div.sett__body__cols(style="margin: 20px auto; float: inherit")
+          div.b-note.sett__task__block
+            h= lang.filters.list.title + ':'
+            - var i = 0, k = ''
+            - each filt in filters
+              div.sett__task__add
+                - k = 'filter_' + i
+                div.sett__task__choose
+                  - if (i == 0)
+                    div.e-control.e-control_on
+                      div.e-stick
+                    input(id= k, type="checkbox", name= filt.value, checked)
+                  - else
+                    - if (filt.on == 'true')
+                      div.e-control.e-control_on.e-control_click
+                        div.e-stick
+                      input(id= k, type="checkbox", name= filt.value, checked)
+                    - else
+                      div.e-control.e-control_click
+                        div.e-stick
+                      input(id= k, type="checkbox", name= filt.value)
+                  label(for= k).b-prop__name= filt.name
+                  div.b-prop__desc= filt.desc
+
+                div.sett__col
+                  div.sett__task__two-cols
+                    - var j = 0
+                    - each o in filt.fields
+                      - k = 'filter_' + i + '_' + j
+                      div.sett__task__choose
+                        - if (o.on == 'true')
+                          div.e-control.e-control_click.e-control_on
+                            div.e-stick
+                          input(id= k, type="checkbox", name= o.value, checked)
+                        - else 
+                          div.e-control.e-control_click
+                            div.e-stick
+                          input(id= k, type="checkbox", name= o.value)
+                        label(for= k).b-prop__name= o.name
+                      - j++
+                div.b-button.js-save.none= lang.form.save
+                - i++
+             
+            div.sett__task__add
+              h= lang.filters.add.title + ':' 
+              input#filter__new_name(type="text", placeholder= lang.form.title).sett__input
+              input#filter__new_desc(type="text", placeholder= lang.form.desc).sett__input
+              div.sett__col
+                h= lang.filters.add.field + ':' 
+                select#sett__task__filter.sett__input
+                  - each o in lang.filters.list_shown.options
+                    option(value= o.value).sett__option= o.name
+
+              div.sett__col
+                h= lang.filters.list_shown.title + ':'
+                - var i = 0, k = ''
+                div.sett__task__two-cols
+                  - each o in lang.filters.list_shown.options
+                    - k = 'filter_new_' + i
+                    div.sett__task__choose
+                      - if (i < 3)
+                        div.e-control.e-control_click.e-control_on
+                          div.e-stick
+                        input(id= k, type="checkbox", name= o.value, checked)
+                      - else 
+                        div.e-control.e-control_click
+                          div.e-stick
+                        input(id= k, type="checkbox", name= o.value)
+                        
+                      label(for= k).b-prop__name= o.name
+                    - i++
+
+              div.b-button.js-create.none= lang.form.create
+
+
+    script(type='text/javascript', src='js/jquery.min.js')
+    script(type='text/javascript', src='js/core.js')
+    script(type='text/javascript', src='js/index.js')
+    script(type='text/javascript', src='js/work.js')
+    script(type='text/javascript', src='js/sett.js')
+    script(type='text/javascript', src='js/filters.js')

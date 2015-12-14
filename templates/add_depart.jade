@@ -1,0 +1,23 @@
+extends workflow
+block form
+    div.b-note__body
+        label.b-form__label(for="title")= lang.title + ':'
+        input.b-form__input#title(type="text")
+        
+        label.b-form__label= lang.employers + ':'
+        - if (users.none)
+            div.b-form__input= users.none
+        - else           
+            div.table
+                - each user in users
+                    - var id = user.id
+                    div
+                        label.b-user__name(for= id)= user.name
+                        div.b-user__id.id.none= id
+                        div.b-user__depart
+                            div.e-control.e-control_click
+                                div.e-stick
+                                input(id= id, type="checkbox") 
+                                
+        div.b-button(id= button.id)= button.create
+

@@ -1,0 +1,10 @@
+extends form
+block note_inner
+  input.b-note__input#reg_firm(type='text', placeholder= form.firmname)
+  input.b-note__input#reg_email(type='text', placeholder= form.email)
+  input.b-note__input#reg_password(type='password', placeholder= form.password)
+  input.b-note__input#reg_name(type='text', placeholder= form.name)
+  input.b-note__input#reg_surname(type='text', placeholder= form.surname)
+  input.b-note__checkbox#reg_remember(type='checkbox')
+  label.b-note__label(for='reg_remember')= form.remember
+  div.b-button#reg_send= form.reg

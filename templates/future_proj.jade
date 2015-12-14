@@ -1,0 +1,62 @@
+- if (field.type == 'option')
+
+                                        h= lang.proj.fields[field.title].choose + ':'
+
+                                        - if (field.options_type == 'text')
+                                            - each o, o_name in lang.proj.fields[field.title].options
+                                                - var k = 'proj__choose__' + field.title + '__' + o_name
+                                                - var className = 'e-control'
+                                                - if (field.options.indexOf(o_name) != -1)
+                                                    - className += ' e-control_on'
+                                                    - if (!def_sett.proj.fields[field.title] || def_sett.proj.fields[field.title].options.indexOf(o_name) == -1)
+                                                        - className += ' e-control_click'
+                                                - else
+                                                    - className += ' e-control_click'
+                                                div(class= className)
+                                                    div.e-stick
+                                                    - if (field.options.indexOf(o_name) != -1)
+                                                      input(id= k, type="checkbox", checked)
+                                                    - else
+                                                      input(id= k, type="checkbox")
+                                                label(for= k).b-prop__name= o.name
+
+                                            h= lang.proj.fields[field.title].add + ':'
+                                            input#proj__status_name(type="text", placeholder= lang.form.title).sett__input
+
+                                            - var k = 'proj__choose__' + field.title + '_default'
+                                            label(for= k).sett__label= lang.proj.fields[field.title].default
+                                            select(id= k).sett__input
+                                                - each o in field.options
+                                                    - if (sett.proj.fields[field.title].default == o)
+                                                        option(value= o, selected).sett__option= lang.proj.fields[field.title].options[o]
+                                                    - else
+                                                        option(value= o).sett__option= lang.proj.fields[field.title].options[o]
+
+                                        - if (field.options_type == 'colls')
+                                            - var id = 'proj__choose__' + field.title + '_default'
+                                            select(id= id).sett__input
+                                                - each col in field.collection
+                                                    - each elem, elem_id in colls[col.name]
+                                                        - var title = ''
+                                                        - each t in col.fields.title
+                                                            - title += colls[col.name][col.fields.title] + ' '
+                                                        option(value= elem_id).sett__option= title
+
+                                    div.sett__task__change
+                                        h= lang.sett.rights.title
+                                        div
+                                            - var i = 0
+                                            - var ind_on = 0
+                                            - each a in ["admins", "all_users"]
+                                                - var k = 'proj__rights__' + field.title + '__' + a
+                                                - if (field.edit == a)
+                                                    input(id= k, value= a, type="radio", number= i, checked)
+                                                    - ind_on = i
+                                                - else
+                                                    input(id= k, value= a, type="radio", number= i)
+                                                
+                                                label(for= k).sett__label= lang.sett.rights.options[a]
+                                                - i++
+                                            - var className = 'e-control e-control_on e-control_click e-control_vertical e-control_vertical_to e-control_' + ind_on
+                                            div(class= className)
+                                                div.e-stick

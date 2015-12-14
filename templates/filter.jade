@@ -1,0 +1,65 @@
+div.sett__body__col
+                    div.b-note.sett__task__block
+                        label.sett__label.sett__label_main= lang.filters.title
+                      
+                        div.sett__task__add
+                            h= lang.filters.list.title + ':'
+                            - var i = 0, k = ''
+                            - each f, ind in colls.Filters
+                                - k = 'filter_' + i
+                                - if (sett.filters.indexOf(ind) != -1)
+                                    div.sett__task__choose.active
+                                        div.e-control.e-control_on.e-control_click
+                                            div.e-stick
+                                            input(id= k, type="checkbox", checked)
+                                - else
+                                    div.sett__task__choose
+                                        div.e-control.e-control_click
+                                          div.e-stick
+                                          input(id= k, type="checkbox")
+
+                                div.id.none= ind
+                                label(for= k).b-prop__name= f.name
+                                div.b-prop__desc= f.desc
+
+                                div.sett__cols
+                                    div.sett__col
+                                        h= lang.filters.fields + ':'
+                                        - each field in f.fields
+                                            label.b-prop__name= lang.task.fields[field].title
+                                    div.sett__col
+                                        h= lang.filters.filter + ':'
+                                        - each b in f.by
+                                            label.b-prop__name= lang.task.fields[b].title
+                                - i++
+                           
+                        div.sett__task__add
+                            h= lang.filters.add.title + ':' 
+                            input#filter__new_name(type="text", placeholder= lang.form.title).sett__input
+                            textarea#filter__new_desc(type="text", placeholder= lang.form.desc).sett__input
+                            
+                            h= lang.filters.add.field + ':' 
+                            select#sett__task__filter.sett__input
+                                - each field in sett.task.fields
+                                    option(value= field.title).sett__option= lang.task.fields[field.title].title
+
+                                                                
+
+                            div.sett__col
+                              h= lang.filters.list_shown.title + ':'
+                              - var i = 0, k = ''
+                              div.sett__task__two-cols
+                                - each o in lang.filters.list_shown.options
+                                  - k = 'filter_new_' + i
+                                  div.sett__task__choose
+                                    - if (i < 3)
+                                      div.e-control.e-control_click.e-control_on
+                                        div.e-stick
+                                      input(id= k, type="checkbox", name= o.value, checked)
+                                    - else 
+                                      div.e-control.e-control_click
+                                        div.e-stick
+                                      input(id= k, type="checkbox", name= o.value)
+                                      
+                                    label(for= k).b-prop__name= o.name
+                                  - i++

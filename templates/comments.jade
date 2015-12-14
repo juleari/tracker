@@ -1,0 +1,31 @@
+div.b-comments
+    div.b-comms__title= comms.title
+    div.b-comms
+        - if (!colls.Comments)
+            div.disabled= comms.none
+        - else
+            - each c in colls.Comments
+                div.b-comm
+
+                    div.b-comm__title    
+                        - var name = colls.Users[c.from].name + ' ' + colls.Users[c.from].surname
+                        div.b-comm__from= name
+                        
+                        div.id.none= colls.Users[c.from]._id.toString()
+                        
+                        - if (c.date_change)
+                            - var date = new Date(c.date_change)
+                        - else 
+                            - var date = new Date(c.date_add)
+                        - var text_date = dates.days[date.getDay()] + ', ' +  date.getDate() + ' ' + dates.months[date.getMonth()] + ' ' + date.getFullYear()
+                        div.b-comm__date= text_date
+                    
+                    - var id = c._id.toString()
+                    div.id.none.js-comm__id= id
+                    
+                    div.b-comm__text= c.text
+                    
+    div.b-note
+        div.b-note__body
+            textarea.b-task__input.b-form__input(placeholder= comms.enter)
+            div#comm_add.b-button= comms.add

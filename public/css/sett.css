@@ -1,0 +1,391 @@
+h {
+    font-size: 20px;
+    color: #333;
+    font-weight: bold;
+}
+.settings>h {
+    display: block;
+}
+div.sett__block.settings__blocks {
+    text-align: center;
+    width: 90%!important;
+    margin: 20px 5%;
+    background: #fafafa;
+}
+
+.b-sett__ul {
+    text-align: left;
+}
+li#sett_task {}
+.settings {
+    margin-top: 20px;
+    text-align: center;
+}
+div.sett__block {
+    width: 400px;
+    min-width: 400px;
+    margin: 10px; 
+    display: block;
+    float: left;
+}
+div.sett__task__block {
+    text-align: center;
+    background-color: #ffeada;
+    border: 1px solid #f08441;
+    padding: 10px;
+    position: relative;
+    margin-top: 30px;
+    width: 90%!important;
+}
+div.sett__task__block.sett__task__block_disabled {
+    background-color: #fafafa;
+    color: #999!important;
+    border-color: #999!important;
+}
+.sett__task__block>div>h {
+    font-size: 15px;
+    float: left;
+    width: 140px;
+    padding-top: 20px;
+}
+.sett__task__block>div>div {
+    display: inline-block;
+    width: 220px;
+    padding-top: 20px;
+    padding-left: 20px;
+    position: relative;
+    vertical-align: top;
+}
+.sett__task__block>div>div>input {
+    clear: left;
+    float: left;
+}
+label.sett__label {
+    display: block;
+    text-align: left;
+    padding-left: 20px;
+    -webkit-user-select: none;
+    text-transform: lowercase;
+}
+label.sett__label.sett__label_main {
+    display: initial;
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+.sett__task__block>div>div>.sett__label {
+    color: #333;
+}
+.sett__task__block>div {
+    padding: 20px 0;
+    border-bottom: 1px solid #f08441;
+}
+div.b-note__body.sett__body {
+    padding: 0;
+    /* width: 944px; */
+    margin: 0 auto;
+    position: relative;
+}
+.sett__task__block>div>div>select {
+    position: absolute; left: 0;
+}
+.sett__label_main>input {
+    position: absolute;
+    top: 11px;
+    margin-left: 10px;
+    width: 23px; height: 23px;
+}
+select#task__to_user {
+    position: relative;
+    top: 10px;
+}
+.sett__input {
+    width: 240px;
+    display: inline-block;
+    height: 31px; 
+    border: 1px solid #bbb; 
+    background: #fff; 
+    color: #333; 
+    padding: 10px 5px;  
+    font-size: 15px;
+}
+input.sett__input {
+    width: 378px;
+}
+div.sett__task__change {     
+    padding-top: 0;
+    width: 600px;
+    margin: 0 auto;
+}
+div.sett__task__note {
+    height: 110px;     padding-top: 0;
+}
+.sett__task__block>div:last-child {
+    border-bottom: none;
+}
+.sett__task__add {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f08441;
+    -webkit-user-select: none;
+}
+    .sett__task__block>.sett__task__add>div {
+        padding-top: 0;
+    }
+    .sett__task__block>.sett__task__add>h {
+        display: block;
+        width: 100%;
+        padding-bottom: 10px;
+        padding-top: 0;
+    }
+    .sett__task__add>label {
+        width: 120px;
+        display: inline-block;
+        float: left;
+    }
+
+div.sett__body__col {
+    width: 432px;
+    display: block;
+    margin: 10px auto;
+    float: left;
+    padding: 10px 20px;
+}
+.sett__task__default {
+    height: 92px;
+}
+div.b-note.sett__task__block:last-child {
+    /* margin-bottom: 0; */
+}
+.sett__task__block>.sett__task__add>div.sett__task__choose {
+    width: 390px;
+}
+.sett__task__choose>.b-prop__name {
+    display: block;
+    text-align: left;
+    float: left;
+    padding-left: 40px;
+    font-size: 14px;
+    cursor: pointer;
+}
+.sett__task__choose>div>.e-control {
+    margin: 0;
+}
+.sett__task__block_disabled h, .sett__task__block_disabled label {
+    color: #999!important;
+}
+.sett__task__block_disabled div.sett__task__add,
+.sett__task__block_disabled div.sett__task__change {
+    border-color: #999;
+}
+.sett__label_main>div.e-control {
+    display: inline-block;
+    top: 4px;
+    left: 10px;
+}
+.e-control { opacity: .6; cursor: default;}
+.e-control.e-control_click { opacity: .9999!important; cursor: pointer;}
+.sett__task__choose>div.e-control {
+    display: block;
+    float: left;
+    top: -5px;
+    position: absolute;
+}
+
+.e-control.e-control_vertical {
+    height: 103px;
+    width: 16px;
+    position: absolute;
+    top: 17px;
+    left: 18px;
+    z-index: 1;
+    opacity: 0.6;
+}
+.e-control_vertical .e-stick {
+    left: 0!important;
+    -webkit-transition: all .15s ease-in-out;
+}
+input[type="radio"] {
+    opacity: .999;
+    margin-top: 5px;
+    opacity: .001;
+    cursor: pointer;
+    z-index: 500;
+    position: inherit;
+}
+.e-control_0>.e-stick {
+    top: 0;
+}
+.e-control_1>.e-stick {
+    top: 16px;
+}
+.e-control_2>.e-stick {
+    top: 34px;
+}
+.e-control_3>.e-stick {
+    top: 51px;
+}
+.e-control_4>.e-stick {
+    top: 70px;
+}
+.e-control_5>.e-stick {
+    top: 88px;
+}
+.sett__task__note .e-control.e-control_vertical {
+    height: 67px;
+}
+
+.sett__check_admin .e-control {
+    display: block;
+    float: left;
+    padding: 0;
+    margin: 0;
+}
+.sett__check_admin label {
+    display: block;
+    float: left;
+    padding-left: 5px;
+}
+.sett__check_admin {
+    padding-top: 10px;
+}
+
+.sett__body__cols {
+    width: 944px;
+    float: left;
+    margin-bottom: 20px;
+}
+.sett__body__cols>.b-note.sett__task__block {
+    width: 882px;
+}
+div.sett__col {
+    width: 50%!important;
+    padding: 0!important;
+    /* display: block!important; */
+    /* float: left; */
+}
+.sett__col .sett__task__choose {
+    width: 100%;
+    display: block;
+    float: left;
+    font-weight: normal;
+    font-family: serif;
+}
+div.sett__task__choose.active {
+    font-weight: bold;
+}
+.sett__col:first-child .sett__task__choose {
+    padding: 5px 0;;
+}
+div.b-prop__desc {
+    display: block;
+    float: left;
+    clear: left;
+    font-size: 11px;
+}
+.sett__body__cols input {
+    width: 90%;
+    margin-bottom: 10px;
+}
+.sett__task__add .sett__col select {
+    position: relative;
+    display: block;
+    width: 400px;
+    margin: 20px;
+}
+.sett__col .sett__col .sett__task__choose {
+    padding: 0;
+}
+.sett__col>h {
+    margin-bottom: 20px; 
+    display: block;
+}
+.sett__task_to .e-control.e-control_vertical{
+    top: 3px;
+    padding: 0;
+    margin: 0;
+    height: 32px;
+}
+.sett__task__choose input[type="checkbox"], .sett__check_admin input[type="checkbox"] {
+    width: 28px;
+    height: 20px;
+    left: 0;
+    z-index: 1000;
+    opacity: .00001;
+    cursor: pointer;
+}
+.sett__body__col .b-note.sett__task__block {
+    width: 400px!important;
+}
+.sett__col .sett__task__two-cols div.sett__task__choose {
+    width: 50%;
+    position: relative;
+}
+.sett__task__two-cols .sett__task__choose>div.e-control {
+    position: relative;
+}
+.sett__task__two-cols .sett__task__choose input[type="checkbox"], .sett__check_admin input[type="checkbox"] {
+    position: absolute;
+}
+.sett__check_admin input[type="checkbox"] {
+    left: 20px;
+}
+.e-control_high3 {
+    height: 51px!important;
+}
+div.sett__task__change.sett__proj__change {
+    height: inherit;
+}
+.sett__col .sett__task__choose>div.e-control {
+    position: relative;
+}div.sett__task__two-cols {
+    display: block;
+    width: 100%;
+}
+.sett__task__two-cols div.sett__task__choose {
+    width: 50%; position: relative;
+    height: 20px;
+    display: block;
+    /* float: left; */
+}
+.sett__task__block select {
+    margin-top: 20px;
+}
+
+.sett__task__block>div>div.sett__task__choose {
+    padding-top: 0;
+    text-align: left;
+    margin: 0;
+}
+.sett__task__change input[type="text"] {
+    margin-top: 20px;
+}
+div.sett__task__choose {
+    width: 100%;
+    display: block;
+    float: left;
+    position: relative;
+    line-height: 20px;
+}
+
+.e-control.e-control_vertical.e-control_vertical_to {
+    height: 32px;
+}
+input.sett__input[type="password"] {
+    width: 378px;
+    padding: 5px;
+    margin-top: 20px;
+}
+.sett__label_input {
+    float: left;
+    width: 200px;
+    margin-top: 20px;
+}
+
+.sett__task__change .b-button {
+    width: 358px;
+    float: right;
+}
+
+#sett_admin .sett__task__change .b-button {
+    float: none;
+}

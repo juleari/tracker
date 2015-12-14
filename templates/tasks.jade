@@ -1,0 +1,38 @@
+div.table
+    - if (f.tasks.none == 'true')
+        div.disabled= f.tasks.text
+    - else
+        div
+            - each field in f.fields
+                - var className = 'b-task_column-name b-task_' + field.title
+                div(class= className)= lang[field.title].title
+
+        - each task in f.tasks
+            - var id = '/task_' +  task.beauty_name
+            - var className = task.status + 'd'
+            - var title = lang.status.options[task.status]
+            a(href= id, class= className, title= title)
+            
+                - each field in f.fields
+                    - var className = 'b-task_' + field.title
+
+                    - if (field.type == 'text' || field.type == 'long_text')
+                        div(class= className)= task[field.title]
+
+                    - if (field.options_type == 'text')
+                        div(class= className)= lang[field.title].options[task[field.title]]
+                            div.id.none= task[field.title]
+
+                    - if (field.options_type == 'colls')
+                        - each coll in field.collection
+                            - if ( colls[coll.name][task[field.title]] )
+                                - var value = ""
+                                - each t in coll.fields.title
+                                    - value += colls[coll.name][task[field.title]][t] + ' '
+                                div(class= className)= value
+                                    div.id.none= colls[coll.name][task[field.title]][coll.fields.none[0]]
+
+- var href = "/add_task"
+- if (proj_id)
+    - href = href + "_" + proj_id
+a(href= href).new= '+ ' + header.add_task

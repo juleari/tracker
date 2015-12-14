@@ -1,0 +1,26 @@
+doctype html5
+html
+    head
+        include head
+    
+    body
+        div.h
+            include header
+        div.b
+            div.b-projs
+                - each p in projs
+                    - var id = '/proj_' +  p.unique_title
+                    a(href= id).b-note.b-proj
+                        div.b-note__title= p.title
+                            div.b-note__status= p.status
+                        div.b-note__body
+                            - each s, id in p.statuses
+                                div.b-note__desc= status[id]
+                                div.b-note__value= s
+
+            div.b-projs.b-projs_add
+                a(href="/add_proj").b-note.b-proj
+                    div.b-note__body +
+
+        script(type='text/javascript', src='js/jquery.min.js')
+        script(type='text/javascript', src='js/index.js')
